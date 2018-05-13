@@ -1,30 +1,24 @@
 # git-deploy-template
 
-> A Vue.js project
+> [Deploy Vue to GitHub pages-the easy way!](https://medium.com/@codetheorist/vue-up-your-github-pages-the-right-way-955486220418)
 
 ## Build Setup
 
 ``` bash
-# install dependencies
-npm install
+# initialize vue project
+vue init webpack git-deploy-template
+cd git-deploy-template
 
-# serve with hot reload at localhost:8080
-npm run dev
+# install push-dir package
+npm install --save-dev push-dir
 
-# build for production with minification
-npm run build
+# create the default branch for github page
+git checkout -b gh-pages
 
-# build for production and view the bundle analyzer report
-npm run build --report
+#  add a key to the scripts section `deploy` with the following value
+npm run build; push-dir --dir=dist --branch=gh-pages --cleanup
 
-# run unit tests
-npm run unit
+# open the config/index.js file and find the assetsPublicPath entry in the build section, NOT the dev section. Change the value of this to the name of you project on GitHub.
+assetsPublicPath: '/git-deploy-template',
 
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
